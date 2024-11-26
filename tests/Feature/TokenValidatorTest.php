@@ -10,6 +10,10 @@ use Tests\TestCase;
 class TokenValidatorTest extends TestCase
 {
     protected $tokenValidator;
-
+  public function setUp(): void
+    {
+        parent::setUp();
+        $this->tokenValidator = new TokenValidator();
+    }
 
 }
