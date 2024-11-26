@@ -34,27 +34,31 @@ class TokenValidatorTest extends TestCase
     }
 
         public function test_empty_token()
-    {
-        $emptyToken = '';
+        {
+            $emptyToken = '';
 
-        $result = $this->tokenValidator->validateFormat($emptyToken);
+            $result = $this->tokenValidator->validateFormat($emptyToken);
 
-        $this->assertFalse($result, "The empty token was accepted.");
+            $this->assertFalse($result, "The empty token was accepted.");
+        }
+
+        public function test_single_valid_parentheses()
+        {
+            $validToken = '()';
+
+            $result = $this->tokenValidator->validateFormat($validToken);
+
+            $this->assertTrue($result, "The token with balanced parentheses was not accepted.");
+        }
+
+        public function test_invalid_single_parentheses()
+        {
+            $invalidToken = '(';
+
+            $result = $this->tokenValidator->validateFormat($invalidToken);
+
+            $this->assertFalse($result, "The token with a single opening parenthesis was accepted.");
+        }
+
+
     }
-
-       public function test_single_valid_parentheses()
-    {
-        $validToken = '()';
-
-        $result = $this->tokenValidator->validateFormat($validToken);
-
-        $this->assertTrue($result, "The token with balanced parentheses was not accepted.");
-    }
-
-
-
-
-
-
-
-}
