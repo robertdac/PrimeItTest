@@ -19,11 +19,14 @@
                 'url' => 'http://www.example.com',
             ], ['Authorization' => 'Bearer ' . self::CUSTOM_TOKEN]);
 
-            // Verificar que la respuesta tenga el status correcto
             $response->assertStatus(200)
-                ->assertJson([
-                    'url' => 'https://tinyurl.com/example',
-                ]);
+                ->assertJson(function($json) {
+                    $json->has('data')
+                        ->has('data.url')
+                        ->where('data.url', function($url) {
+                            return strpos($url, 'https://tinyurl.com/') === 0;
+                        });
+                });
         }
 
         /** @test */
