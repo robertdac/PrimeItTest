@@ -24,5 +24,15 @@ class TokenValidatorTest extends TestCase
         $this->assertTrue($result, "The valid token was not accepted.");
     }
 
+    public function test_invalid_token()
+    {
+        $invalidToken = '{), [{]}';
+
+        $result = $this->tokenValidator->validateFormat($invalidToken);
+
+        $this->assertFalse($result, "The invalid token was accepted.");
+    }
+
+
 
 }
