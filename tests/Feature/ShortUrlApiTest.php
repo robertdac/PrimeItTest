@@ -8,5 +8,6 @@ use Tests\TestCase;
 
 class ShortUrlApiTest extends TestCase
 {
+const CUSTOM_TOKEN = '[]{}()';
 
 }
