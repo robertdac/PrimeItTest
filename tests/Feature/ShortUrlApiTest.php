@@ -15,8 +15,6 @@
         public function it_returns_a_shortened_url()
         {
 
-            $this->mockTinyUrlApi('http://www.example.com', 'https://tinyurl.com/example');
-
             $response = $this->postJson('/api/v1/short-urls', [
                 'url' => 'http://www.example.com',
             ], ['Authorization' => 'Bearer ' . self::CUSTOM_TOKEN]);
