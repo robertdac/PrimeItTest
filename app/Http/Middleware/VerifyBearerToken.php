@@ -7,12 +7,18 @@
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
+    use App\Services\TokenValidator;
 
     class VerifyBearerToken
     {
-
-        public function __construct()
+        /**
+         *
+         *
+         * @param \App\Services\TokenValidator $tokenValidator
+         */
+        public function __construct(TokenValidator $tokenValidator)
         {
+            $this->tokenValidator = $tokenValidator;
         }
 
 
