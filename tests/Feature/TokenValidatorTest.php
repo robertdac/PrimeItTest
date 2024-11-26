@@ -15,5 +15,14 @@ class TokenValidatorTest extends TestCase
         parent::setUp();
         $this->tokenValidator = new TokenValidator();
     }
+       public function test_valid_token()
+    {
+        $validToken = '({[]})';
+
+        $result = $this->tokenValidator->validateFormat($validToken);
+
+        $this->assertTrue($result, "The valid token was not accepted.");
+    }
+
 
 }
