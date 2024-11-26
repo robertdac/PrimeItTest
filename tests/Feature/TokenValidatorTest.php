@@ -33,6 +33,17 @@ class TokenValidatorTest extends TestCase
         $this->assertFalse($result, "The invalid token was accepted.");
     }
 
+        public function test_empty_token()
+    {
+        $emptyToken = '';
+
+        $result = $this->tokenValidator->validateFormat($emptyToken);
+
+        $this->assertFalse($result, "The empty token was accepted.");
+    }
+
+
+
 
 
 }
