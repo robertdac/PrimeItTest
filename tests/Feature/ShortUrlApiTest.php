@@ -56,16 +56,4 @@
             ]);
             $response->assertStatus(401);
         }
-
-
-        protected function mockTinyUrlApi($url, $shortenedUrl)
-        {
-            Http::fake([
-                'https://api.tinyurl.com/create' => Http::response([
-                    'result' => $shortenedUrl,
-                ], 200),
-            ]);
-        }
-
-
     }
