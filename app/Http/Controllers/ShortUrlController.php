@@ -23,10 +23,18 @@
             $this->urlShortenerService = $urlShortenerService;
         }
 
-        public function create()
+        public function create(ShortUrlRequest $request)
 
         {
+            $shortenedUrl = $this->urlShortenerService->shortenUrl($request->input('url'));
 
+            if (!empty($shortenedUrl)) {
+                return new ShortenedUrlResource($shortenedUrl);
+            }
+
+            return response()->json([
+                'error' => 'An unexpected error occurred. Please try again later.'
+            ], 422);
 
         }
 
