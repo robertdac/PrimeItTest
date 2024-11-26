@@ -28,6 +28,15 @@ const CUSTOM_TOKEN = '[]{}()';
             ]);
     }
 
+      /** @test */
+    public function it_returns_error_when_url_is_missing()
+    {
+        $response = $this->postJson('/api/v1/short-urls', [], ['Authorization' => 'Bearer ' . self::CUSTOM_TOKEN]);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors('url');
+    }
+
 
     protected function mockTinyUrlApi($url, $shortenedUrl)
     {
