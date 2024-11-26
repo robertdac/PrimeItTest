@@ -42,6 +42,17 @@ class TokenValidatorTest extends TestCase
         $this->assertFalse($result, "The empty token was accepted.");
     }
 
+       public function test_single_valid_parentheses()
+    {
+        $validToken = '()';
+
+        $result = $this->tokenValidator->validateFormat($validToken);
+
+        $this->assertTrue($result, "The token with balanced parentheses was not accepted.");
+    }
+
+
+
 
 
 
