@@ -1,37 +1,39 @@
 <?php
 
-namespace Tests\Feature;
+    namespace Tests\Feature;
 
-use App\Services\TokenValidator;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+    use App\Services\TokenValidator;
+    use Illuminate\Foundation\Testing\RefreshDatabase;
+    use Illuminate\Foundation\Testing\WithFaker;
+    use Tests\TestCase;
 
-class TokenValidatorTest extends TestCase
-{
-    protected $tokenValidator;
-  public function setUp(): void
+    class TokenValidatorTest extends TestCase
     {
-        parent::setUp();
-        $this->tokenValidator = new TokenValidator();
-    }
-       public function test_valid_token()
-    {
-        $validToken = '({[]})';
+        protected $tokenValidator;
 
-        $result = $this->tokenValidator->validateFormat($validToken);
+        public function setUp(): void
+        {
+            parent::setUp();
+            $this->tokenValidator = new TokenValidator();
+        }
 
-        $this->assertTrue($result, "The valid token was not accepted.");
-    }
+        public function test_valid_token()
+        {
+            $validToken = '({[]})';
 
-    public function test_invalid_token()
-    {
-        $invalidToken = '{), [{]}';
+            $result = $this->tokenValidator->validateFormat($validToken);
 
-        $result = $this->tokenValidator->validateFormat($invalidToken);
+            $this->assertTrue($result, "The valid token was not accepted.");
+        }
 
-        $this->assertFalse($result, "The invalid token was accepted.");
-    }
+        public function test_invalid_token()
+        {
+            $invalidToken = '{), [{]}';
+
+            $result = $this->tokenValidator->validateFormat($invalidToken);
+
+            $this->assertFalse($result, "The invalid token was accepted.");
+        }
 
         public function test_empty_token()
         {
