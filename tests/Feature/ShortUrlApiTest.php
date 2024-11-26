@@ -48,7 +48,14 @@
                 ->assertJsonValidationErrors('url');
         }
 
-
+        /** @test */
+        public function it_requires_authorization_token()
+        {
+            $response = $this->postJson('/api/v1/short-urls', [
+                'url' => 'http://www.example.com',
+            ]);
+            $response->assertStatus(401);
+        }
 
 
         protected function mockTinyUrlApi($url, $shortenedUrl)
